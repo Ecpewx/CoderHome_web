@@ -14,7 +14,7 @@
         </commentGenerator>
         <!--配置数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/hdu_hw"
+                        connectionURL="jdbc:mysql://localhost:3306/coder_home"
                         userId="root"
                         password="280862536">
             <property name="nullCatalogMeansCurrent" value="true"/>
@@ -23,7 +23,7 @@
 
         <!--生成model 类，targetPackage 指定 model 类的包名，targetProject 指定
         生成的 model放在eclipse的哪个工程下面-->
-        <javaModelGenerator targetPackage="com.hdu.helloworld.helloworldapplet.model"
+        <javaModelGenerator targetPackage="com.zpc.coderhome.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="false"/>
@@ -37,18 +37,31 @@
         <!--生成 MyBatis的 Mapper接口类文件,targetPackage 指定 Mapper 接口类的包名，targetProject 指定生成的 Mapper 接口放在eclipse 的哪个工程下面
         -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.hdu.helloworld.helloworldapplet.dao"
+                             targetPackage="com.zpc.coderhome.dao"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!--数据库表名及对应的Java模型类名-->
-        <table tableName="t_file" domainObjectName="File"
+        <table tableName="user" domainObjectName="User"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
+        <table tableName="blog" domainObjectName="Blog"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" />
+
+        <table tableName="intro" domainObjectName="Intro"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" />
     </context>
 </generatorConfiguration>
 
