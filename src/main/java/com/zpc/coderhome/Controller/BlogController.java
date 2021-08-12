@@ -21,8 +21,9 @@ public class BlogController {
     }
 
     @RequestMapping("/all_blog")
-    public @ResponseBody List<Blog> allBlog(){
-        return blogService.selectAll();
+    public @ResponseBody List<Blog> allBlog(String category){
+        System.out.println(category);
+        return blogService.selectAll(category);
     }
 
     @RequestMapping("/user_blog")

@@ -11,6 +11,46 @@ public class Blog {
 
     private String content;
 
+    private String categoryId;
+
+    private String introImage;
+
+    private String name;
+
+    private String portiImage;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPortiImage() {
+        return portiImage;
+    }
+
+    public void setPortiImage(String portiImage) {
+        this.portiImage = portiImage;
+    }
+
+    public String getIntroImage() {
+        return introImage;
+    }
+
+    public void setIntroImage(String introImage) {
+        this.introImage = introImage;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public Integer getId() {
         return id;
     }

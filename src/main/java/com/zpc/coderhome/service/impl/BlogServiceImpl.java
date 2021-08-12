@@ -20,8 +20,12 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> selectAll() {
-        return blogMapper.selectAll();
+    public List<Blog> selectAll(String category) {
+        if (!category.isEmpty()){
+            return blogMapper.selectByCategory(Integer.valueOf(category));
+        }else{
+            return blogMapper.selectAll();
+        }
     }
 
     @Override

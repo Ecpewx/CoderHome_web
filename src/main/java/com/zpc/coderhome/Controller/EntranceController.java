@@ -15,6 +15,7 @@ public class EntranceController {
 
     @RequestMapping("/login")
     public @ResponseBody User login(String username,String password){
+        System.out.println("username:"+username+",password:"+password);
         return userService.login(username,password);
     }
 

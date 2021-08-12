@@ -6,6 +6,8 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="date" jdbcType="VARCHAR" property="date" />
     <result column="author_id" jdbcType="INTEGER" property="authorId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="intro_image" jdbcType="VARCHAR" property="introImage" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zpc.coderhome.model.Blog">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -32,12 +34,14 @@
     from blog
     where author_id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" parameterType="com.zpc.coderhome.model.Blog" resultMap="ResultMapWithBLOBs">
-    select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from blog
+  <select id="selectAll" resultType="com.zpc.coderhome.model.Blog">
+    select a.id as id, a.title as title, a.content as content, a.date as date,a.author_id as authorId,a.category_id as categoryId,a.intro_image as introImage,b.name as name,b.porti_image as portiImage
+    from blog as a left join user_info as b on a.author_id = b.id
+  </select>
+  <select id="selectByCategory" parameterType="com.zpc.coderhome.model.Blog">
+    select a.id as id, a.title as title, a.content as content, a.date as date,a.author_id as authorId,a.category_id as categoryId,a.intro_image as introImage,b.name as name,b.porti_image as portiImage
+    from blog as a left join user_info as b on a.author_id = b.id
+    where categoryId = #{categoryId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from blog

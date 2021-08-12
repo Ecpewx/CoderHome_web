@@ -17,6 +17,8 @@ public interface BlogMapper {
 
     List<Blog> selectAll();
 
+    List<Blog> selectByCategory(Integer categoryId);
+
     int updateByPrimaryKeySelective(Blog record);
 
     int updateByPrimaryKeyWithBLOBs(Blog record);

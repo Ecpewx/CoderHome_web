@@ -8,7 +8,7 @@ public interface BlogService {
 
     int delete(Integer id, Integer authorId);
 
-    List<Blog> selectAll();
+    List<Blog> selectAll(String category);
 
     List<Blog> selectByUserId(Integer id);
 
