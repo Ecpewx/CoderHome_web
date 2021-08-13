@@ -11,7 +11,7 @@ public class Blog {
 
     private String content;
 
-    private String categoryId;
+    private Integer categoryId;
 
     private String introImage;
 
@@ -43,11 +43,11 @@ public class Blog {
         this.introImage = introImage;
     }
 
-    public String getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
