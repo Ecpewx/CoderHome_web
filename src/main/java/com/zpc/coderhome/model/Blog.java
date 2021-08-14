@@ -9,6 +9,8 @@ public class Blog {
 
     private Integer authorId;
 
+    private String showedContent;
+
     private String content;
 
     private Integer categoryId;
@@ -89,5 +91,13 @@ public class Blog {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getShowedContent() {
+        return showedContent;
+    }
+
+    public void setShowedContent(String showedContent) {
+        this.showedContent = showedContent;
     }
 }
