@@ -12,5 +12,7 @@ public interface BlogService {
 
     List<Blog> selectByUserId(Integer id);
 
+    Blog selectById(Integer id);
+
     int insertBlog(Blog blog);
 }

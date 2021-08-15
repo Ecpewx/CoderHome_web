@@ -19,21 +19,15 @@
   <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from blog
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectByPrimaryKey" resultType="com.zpc.coderhome.model.Blog">
+    select a.id as id, a.title as title, a.showed_content as showedContent, a.content as content, a.date as date,a.author_id as authorId,a.category_id as categoryId,a.intro_image as introImage,b.name as name,b.porti_image as portiImage
+    from blog as a left join user_info as b on a.author_id = b.id
+where a.id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByUserId" parameterType="com.zpc.coderhome.model.Blog" resultMap="ResultMapWithBLOBs">
-    select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from blog
-    where author_id = #{id,jdbcType=INTEGER}
+  <select id="selectByUserId" resultType="com.zpc.coderhome.model.Blog">
+    select a.id as id, a.title as title, a.showed_content as showedContent, a.content as content, a.date as date,a.author_id as authorId,a.category_id as categoryId,a.intro_image as introImage,b.name as name,b.porti_image as portiImage
+    from blog as a left join user_info as b on a.author_id = b.id
+    where a.id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultType="com.zpc.coderhome.model.Blog">
     select a.id as id, a.title as title, a.showed_content as showedContent, a.content as content, a.date as date,a.author_id as authorId,a.category_id as categoryId,a.intro_image as introImage,b.name as name,b.porti_image as portiImage

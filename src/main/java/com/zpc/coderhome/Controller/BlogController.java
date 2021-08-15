@@ -48,6 +48,11 @@ public class BlogController {
         return String.valueOf(blogService.insertBlog(blog));
     }
 
+    @RequestMapping("/id_blog")
+    public @ResponseBody Blog idBlog(String id){
+        return blogService.selectById(Integer.valueOf(id));
+    }
+
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public @ResponseBody String fileUpload(MultipartFile file) throws IOException {
         if (file == null){

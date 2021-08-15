@@ -7,6 +7,8 @@ public class UserInfo {
 
     private String portiImage;
 
+    private String histroy;
+
     public Integer getId() {
         return id;
     }

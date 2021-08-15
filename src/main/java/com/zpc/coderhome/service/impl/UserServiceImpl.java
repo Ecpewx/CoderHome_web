@@ -19,10 +19,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String name, String username, String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        userMapper.insertSelective(user);
-        return userMapper.selectByLogin(username,password);
+        if (userMapper.selectByLogin(username,password) == null){
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            userMapper.insertSelective(user);
+            return userMapper.selectByLogin(username,password);
+        }
+        return null;
     }
 }
