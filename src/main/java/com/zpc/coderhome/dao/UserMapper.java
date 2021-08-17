@@ -1,6 +1,7 @@
 package com.zpc.coderhome.dao;
 
 import com.zpc.coderhome.model.User;
+import com.zpc.coderhome.model.UserInfo;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -11,7 +12,7 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
-    User selectByLogin(String username, String password);
+    UserInfo selectByLogin(String username, String password);
 
     int updateByPrimaryKeySelective(User record);
 

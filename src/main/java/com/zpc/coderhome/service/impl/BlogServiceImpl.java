@@ -22,7 +22,6 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> selectAll(String category) {
         if (!category.isEmpty()){
-            System.out.println();
             return blogMapper.selectByCategory(Integer.valueOf(category));
         }else{
             return blogMapper.selectAll();

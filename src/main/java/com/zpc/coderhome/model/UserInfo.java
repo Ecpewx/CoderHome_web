@@ -7,7 +7,15 @@ public class UserInfo {
 
     private String portiImage;
 
-    private String histroy;
+    private String history;
+
+    public String getHistory() {
+        return history;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
 
     public Integer getId() {
         return id;

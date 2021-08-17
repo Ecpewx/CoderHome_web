@@ -1,6 +1,6 @@
 package com.zpc.coderhome.Controller;
 
-import com.zpc.coderhome.model.User;
+import com.zpc.coderhome.model.UserInfo;
 import com.zpc.coderhome.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +16,14 @@ public class EntranceController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public @ResponseBody User login(String username, String password){
+    public @ResponseBody
+    UserInfo login(String username, String password){
         System.out.println("username:"+username+",password:"+password);
         return userService.login(username,password);
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public @ResponseBody User register(String name,String username,String password){
-        return userService.register(name,username,password);
+    public @ResponseBody UserInfo register(String name,String username,String password,String portiImage){
+        return userService.register(name,username,password,portiImage);
     }
 }

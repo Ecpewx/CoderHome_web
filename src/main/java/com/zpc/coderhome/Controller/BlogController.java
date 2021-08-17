@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,15 +59,12 @@ public class BlogController {
         if (file == null){
             return "fail";
         }
-        String staticPath = ClassUtils.getDefaultClassLoader().getResource("static").getPath();
         String name = file.getOriginalFilename();
-        String urlName = "images" + File.separator + name;
-        String savePath = staticPath + File.separator + urlName;
         String visitPath = "images/"+name;
-        File iFile = new File(savePath);
-        if (!iFile.exists()){
-            file.transferTo(iFile);
-            fileService.upload(name,savePath);
+        File upload = new File("/usr/local/coderhome/static/images/"+name);
+        if (!upload.exists()){
+            file.transferTo(upload);
+            fileService.upload(name,upload.getPath());
             return visitPath;
         }
         return "no";

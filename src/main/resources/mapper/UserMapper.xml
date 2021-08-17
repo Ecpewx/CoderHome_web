@@ -15,11 +15,12 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByLogin" parameterType="com.zpc.coderhome.model.User" resultMap="BaseResultMap">
+  <select id="selectByLogin" resultType="com.zpc.coderhome.model.UserInfo">
     select
-    <include refid="Base_Column_List" />
-    from user
-    where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    a.id as id,b.name as name,b.porti_image as portiImage,b.history as history
+    from user as a left join user_info as b
+    on a.id = b.id
+    where a.username = #{username,jdbcType=VARCHAR} and a.password = #{password,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
