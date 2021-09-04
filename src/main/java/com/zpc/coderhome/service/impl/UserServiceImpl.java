@@ -18,25 +18,20 @@ public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public UserInfo login(String username, String password) {
-        UserInfo userInfo = userMapper.selectByLogin(username,password);
-        return userMapper.selectByLogin(username,password);
-    }
-
-    @Override
-    public UserInfo register(String name, String username, String password,String portiImage) {
-        if (userMapper.selectByLogin(username,password) == null){
+    public UserInfo login(String uuid) {
+        UserInfo userInfo = userMapper.selectByLogin(uuid);
+        if (userInfo==null) {
             User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
+            user.setUuid(uuid);
             userMapper.insertSelective(user);
-            UserInfo userInfo = userMapper.selectByLogin(username,password);
-            System.out.println(userInfo.getId());
-            userInfo.setName(name);
-            userInfo.setPortiImage(portiImage);
-            userInfoMapper.insert(userInfo);
-            return userMapper.selectByLogin(username,password);
+            UserInfo userInfo1 = new UserInfo();
+            userInfo1.setId(user.getId());
+            userInfo1.setName("用户"+uuid.substring(0,6));
+            userInfo1.setPortiImage("https://www.zjjpzxcz.com/coderhome/images/default_picture.jpg");
+            userInfo1.setHistory("");
+            userInfoMapper.insert(userInfo1);
+            userInfo = userMapper.selectByLogin(uuid);
         }
-        return null;
+        return userInfo;
     }
 }

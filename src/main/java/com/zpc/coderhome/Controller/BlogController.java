@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,9 @@ public class BlogController {
     @RequestMapping("/all_blog")
     public @ResponseBody List<Blog> allBlog(HttpServletResponse response, String category){
         response.setCharacterEncoding("utf-8");
-        return blogService.selectAll(category);
+        List<Blog> list = blogService.selectAll(category);
+        Collections.reverse(list);
+        return list;
     }
 
     @RequestMapping("/user_blog")

@@ -12,7 +12,9 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
-    UserInfo selectByLogin(String username, String password);
+    UserInfo selectByLogin(String uuid);
+
+    int insertByRegister(String uuid);
 
     int updateByPrimaryKeySelective(User record);
 
