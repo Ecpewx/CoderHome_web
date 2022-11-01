@@ -41,20 +41,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-
+/**
+ * 网页端登录
+ * 当返回值为404时，为不存在该用户
+ * 当返回值为-1时，为密码输入错误
+ * 其他情况返回user_info的id
+ *
+ */
 //网页端账号密码登录
     public UAcAndCode login_web(String username, String password) {
         UserAccount ua =userAccountMapper.selectByUsername(username);
         UAcAndCode userAndCode=new UAcAndCode();
-        if(ua.getUsername()== null){
-            userAndCode.setUserAccount(ua);
+        if(ua== null){
             userAndCode.setCode(404);
+            userAndCode.setUserAccount(ua);
         }
         else if(!ua.getPassword().equals(password)){
             userAndCode.setCode(-1);
+            userAndCode.setUserAccount(null);
         }
-        else
+        else{
             userAndCode.setCode(0);
+            userAndCode.setUserAccount(ua);
+        }
+
+
         return userAndCode;
     }
     @Override
