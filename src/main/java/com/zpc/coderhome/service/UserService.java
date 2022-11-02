@@ -12,4 +12,5 @@ public interface UserService {
     Integer register_web(String username ,String password);
 //    UserInfo login_account(String username,String pasaword);
     Boolean username_check(String username);
+    UserInfo showUserInfo(Integer user_acid);
 }

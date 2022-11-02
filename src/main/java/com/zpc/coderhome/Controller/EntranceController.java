@@ -2,6 +2,7 @@ package com.zpc.coderhome.Controller;
 
 import com.zpc.coderhome.model.UAcAndCode;
 import com.zpc.coderhome.model.UserInfo;
+import com.zpc.coderhome.service.BlogService;
 import com.zpc.coderhome.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,30 +18,32 @@ public class EntranceController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+   private BlogService blogService;
     @RequestMapping("/login")
     public @ResponseBody
     UserInfo login(String uuid) {
-//        System.out.println("user:"+uuid+" login...");
         return userService.login(uuid);
     }
     @RequestMapping("/login_web")
     public @ResponseBody
     UAcAndCode login_web(String username, String password){
-        System.out.println("/login_web");
         return userService.login_web(username,password);
     }
     @RequestMapping("/register_web")
     public @ResponseBody Integer register_web(String username,String password){
-        System.out.println("/register_web");
         return userService.register_web(username,password);
     }
     /**
      * 没有找到对应的username就返回TRUE，否则返回FALSE
      * */
-    @RequestMapping(value = "/username_check")
+    @RequestMapping( "/username_check")
     public @ResponseBody Boolean usernameCheck(String username){
-        System.out.println("/username_check");
         return userService.username_check(username);
+    }
+    @RequestMapping("/showUserInfo")
+    public @ResponseBody UserInfo showUserInfo(Integer user_acid){
+        System.out.println(user_acid);
+        return userService.showUserInfo(user_acid);
     }
 }

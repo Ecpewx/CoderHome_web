@@ -97,4 +97,9 @@ public class UserServiceImpl implements UserService {
         UserAccount ua=userAccountMapper.selectByUsername(username);
         return  ua==null?Boolean.TRUE:Boolean.FALSE;
     }
+
+    @Override
+    public UserInfo showUserInfo(Integer user_acid) {
+        return userInfoMapper.selectByForeignKey(user_acid);
+    }
 }
