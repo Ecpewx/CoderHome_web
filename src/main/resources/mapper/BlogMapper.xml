@@ -8,6 +8,8 @@
     <result column="author_id" jdbcType="INTEGER" property="authorId" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="intro_image" jdbcType="VARCHAR" property="introImage" />
+<!--    <result column="showed_content" jdbcType="LONGVARCHAR" property="showedContent"/>-->
+<!--    <result column="content" jdbcType="LONGVARCHAR" property="content" />-->
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zpc.coderhome.model.Blog">
     <result column="showed_content" jdbcType="LONGVARCHAR" property="showedContent" />
@@ -24,6 +26,21 @@
     from blog as a left join user_info as b on a.author_id = b.id
 where a.id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectCountByUseridAndCa" resultType="java.lang.Integer">
+    select count(id) from blog where author_id = #{userid,jdbcType=INTEGER} and category_id = #{ca,jdbcType=INTEGER}
+  </select>
+  <select id="selectCountByUserid" resultType="java.lang.Integer">
+    select count(id) from blog where author_id = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUseridAndCa" resultMap="BaseResultMap">
+    select id,title,content,date,author_id,category_id,intro_image
+from blog where author_id = #{userid,jdbcType=INTEGER} and category_id = #{ca,jdbcType=INTEGER} limit #{bias,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserId_web" resultMap="BaseResultMap">
+    select id,title,content,date,author_id,category_id,intro_image
+from blog where author_id = #{userid,jdbcType=INTEGER} limit #{bias,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+  <!--这个地方的userid其实不是userinfo的id,这个查找的方法selectByUserId应该改成selectById-->
   <select id="selectByUserId" resultType="com.zpc.coderhome.model.Blog">
     select a.id as id, a.title as title, a.showed_content as showedContent, a.content as content, a.date as date,a.author_id as authorId,a.category_id as categoryId,a.intro_image as introImage,b.name as name,b.porti_image as portiImage
     from blog as a left join user_info as b on a.author_id = b.id

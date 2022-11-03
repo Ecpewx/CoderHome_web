@@ -5,6 +5,7 @@ import com.zpc.coderhome.service.BlogService;
 import com.zpc.coderhome.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
+@CrossOrigin
 public class BlogController {
 
     @Autowired
@@ -37,7 +39,19 @@ public class BlogController {
         Collections.reverse(list);
         return list;
     }
+    /**
+     *通过用户的文章类别展示文章
+     */
+    @RequestMapping("/totalBlog_ca_web")
+    public @ResponseBody Integer totalBlog(Integer userid,Integer ca){
+        return blogService.selectTotalBlogNum(userid,ca);
+    }
+    @RequestMapping ("/showBlog_web")
+    public @ResponseBody List<Blog>showBlogByCa(Integer userid,Integer ca,Integer pageNum,Integer pageSize){
 
+       List<Blog> b=blogService.selectByUseridAndCa(userid,ca,(pageNum-1)*pageSize,pageSize);
+       return b;
+    }
     @RequestMapping("/user_blog")
     public @ResponseBody List<Blog> userBlog(String id){
         return blogService.selectByUserId(Integer.valueOf(id));

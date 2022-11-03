@@ -96,7 +96,6 @@ public class Blog {
     public String getShowedContent() {
         return showedContent;
     }
-
     public void setShowedContent(String showedContent) {
         this.showedContent = showedContent;
     }

@@ -17,11 +17,20 @@ public interface BlogMapper {
 
     List<Blog> selectAll();
 
+    /**
+     * 分页查询
+     * @param userid
+     * @return
+     */
+    List<Blog> selectByUserId_web(Integer userid,Integer bias,Integer pageSize);
+    List<Blog> selectByUseridAndCa(Integer userid,Integer ca,Integer bias,Integer pageSize);
     List<Blog> selectByCategory(Integer categoryId);
-
+    Integer selectCountByUserid(Integer userid);
+    Integer selectCountByUseridAndCa(Integer userid,Integer ca);
     int updateByPrimaryKeySelective(Blog record);
 
     int updateByPrimaryKeyWithBLOBs(Blog record);
 
     int updateByPrimaryKey(Blog record);
+
 }
