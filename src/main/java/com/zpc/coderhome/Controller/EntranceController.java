@@ -46,4 +46,5 @@ public class EntranceController {
         System.out.println(user_acid);
         return userService.showUserInfo(user_acid);
     }
+
 }
