@@ -43,7 +43,7 @@ public class EntranceController {
     }
     @RequestMapping("/showUserInfo")
     public @ResponseBody UserInfo showUserInfo(Integer user_acid){
-        System.out.println(user_acid);
+
         return userService.showUserInfo(user_acid);
     }
 
