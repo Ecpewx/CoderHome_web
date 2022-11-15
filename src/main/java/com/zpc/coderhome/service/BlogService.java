@@ -7,7 +7,7 @@ import java.util.List;
 public interface BlogService {
 
     int delete(Integer id, Integer authorId);
-
+    int deleteById(Integer id);
     List<Blog> selectAll(String category);
 /**
  * 该userId并不是真正的userid,而是blog的id

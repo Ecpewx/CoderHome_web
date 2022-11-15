@@ -5,10 +5,7 @@ import com.zpc.coderhome.service.BlogService;
 import com.zpc.coderhome.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +48,13 @@ public class BlogController {
 
        List<Blog> b=blogService.selectByUseridAndCa(userid,ca,(pageNum-1)*pageSize,pageSize);
        return b;
+    }
+    @RequestMapping("/deleteBlog_web")
+    /**
+     * 登录返回值
+     */
+    public @ResponseBody Integer deleteBlog(Integer id){
+        return blogService.deleteById(id);
     }
     @RequestMapping("/user_blog")
     public @ResponseBody List<Blog> userBlog(String id){

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BlogMapper {
     int deleteByPrimaryKey(Integer id,Integer authorId);
-
+    int deleteById(Integer id);
     int insert(Blog record);
 
     int insertSelective(Blog record);

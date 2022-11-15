@@ -20,6 +20,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public int deleteById(Integer id) {
+        return blogMapper.deleteById(id);
+    }
+
+    @Override
     public List<Blog> selectAll(String category) {
         if (!category.isEmpty()){
             return blogMapper.selectByCategory(Integer.valueOf(category));

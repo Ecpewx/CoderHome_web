@@ -8,6 +8,7 @@
     <result column="author_id" jdbcType="INTEGER" property="authorId" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="intro_image" jdbcType="VARCHAR" property="introImage" />
+    <result column="showed_content" jdbcType="LONGVARCHAR" property="showedContent" />
 <!--    <result column="showed_content" jdbcType="LONGVARCHAR" property="showedContent"/>-->
 <!--    <result column="content" jdbcType="LONGVARCHAR" property="content" />-->
   </resultMap>
@@ -33,11 +34,11 @@ where a.id = #{id,jdbcType=INTEGER}
     select count(id) from blog where author_id = #{userid,jdbcType=INTEGER}
   </select>
   <select id="selectByUseridAndCa" resultMap="BaseResultMap">
-    select id,title,content,date,author_id,category_id,intro_image
+    select id,title,content,date,author_id,category_id,intro_image,showed_content
 from blog where author_id = #{userid,jdbcType=INTEGER} and category_id = #{ca,jdbcType=INTEGER} limit #{bias,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
   </select>
   <select id="selectByUserId_web" resultMap="BaseResultMap">
-    select id,title,content,date,author_id,category_id,intro_image
+    select id,title,content,date,author_id,category_id,intro_image,showed_content
 from blog where author_id = #{userid,jdbcType=INTEGER} limit #{bias,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
   </select>
   <!--这个地方的userid其实不是userinfo的id,这个查找的方法selectByUserId应该改成selectById-->
@@ -58,6 +59,9 @@ from blog where author_id = #{userid,jdbcType=INTEGER} limit #{bias,jdbcType=INT
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from blog
     where id = #{id,jdbcType=INTEGER} and author_id = #{authorId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from blog where id =#{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zpc.coderhome.model.Blog">
     insert into blog (id, title, date, 
